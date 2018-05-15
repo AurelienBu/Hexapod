@@ -17,13 +17,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
-
- 
-#ifdef _WIN32
-#define O_NOCTTY 0
-#else
 #include <termios.h>
-#endif
 
 
 int ServosGetPosition(int fd, unsigned char channel);

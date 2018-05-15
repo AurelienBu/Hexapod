@@ -11,6 +11,7 @@
  *	 The program is made to control a Pololu Maestro 18 servos                *
  *                                                                            *
  *****************************************************************************/
+#include "ServoControl.h"
 
 /******************************************************************************
  * Function: ServosGetPosition                                                *
@@ -20,8 +21,6 @@
  * Brief: This function reads the position of the servos given by the channel *
  *                                                                            *
  *****************************************************************************/
-#define "ServoControl.h"
-
 int ServosGetPosition(int fd, unsigned char channel)
 {
   unsigned char command[] = {0x90, channel};
