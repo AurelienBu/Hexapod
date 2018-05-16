@@ -24,13 +24,13 @@ default: Hexapod
 # To create the executable file count we need the object files
 # countwords.o, counter.o, and scanner.o:
 #
-Hexapod:  main.o ServeurTCP.o ServoControl.o 
-	$(CC) $(CFLAGS) -o Hexapod main.o ServeurTCP.o ServoControl.o
+Hexapod:  main.o ServeurTCP.o ServoControl.o HexapodKinetic.o
+	$(CC) $(CFLAGS) -o Hexapod main.o ServeurTCP.o ServoControl.o HexapodKinetic.o
 
 # To create the object file countwords.o, we need the source
 # files countwords.c, scanner.h, and counter.h:
 #
-main.o:  main.c ServeurTCP.h ServoControl.h 
+main.o:  main.c ServeurTCP.h ServoControl.h HexapodKinetic.h
 	$(CC) $(CFLAGS) -c main.c
 
 # To create the object file countwords.o, we need the source
@@ -44,6 +44,9 @@ ServeurTCP.o:  ServeurTCP.c ServeurTCP.h
 #
 ServoControl.o:  ServoControl.c ServoControl.h
 	$(CC) $(CFLAGS) -c ServoControl.c
+
+HexapodKinetic.o:  HexapodKinetic.c HexapodKinetic.h
+	$(CC) $(CFLAGS) -c HexapodKinetic.c
 
 
 # To start over from scratch, type 'make clean'.  This
