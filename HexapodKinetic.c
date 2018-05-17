@@ -23,7 +23,7 @@ void debout(int fd){
   ServosSetTarget(fd, 3,6000);
   ServosSetTarget(fd, 6,6000);
 
-  sleep(500);
+  usleep(1000 * 1000);
 }
 
 void coucher(int fd){
@@ -49,7 +49,7 @@ void coucher(int fd){
   ServosSetTarget(fd, 3,6000);
   ServosSetTarget(fd, 6,6000);
 
-  sleep(500);
+  usleep(1000*1000);
 }
 
 void avancer3X3(int fd){
@@ -58,7 +58,7 @@ void avancer3X3(int fd){
   ServosSetTarget(fd, 10,8000);
   ServosSetTarget(fd, 16,8000);
   ServosSetTarget(fd, 1,7000);
-  sleep(200);
+  usleep(200*1000);
 //touner les pattes
   ServosSetTarget(fd, 3,8000);
   ServosSetTarget(fd, 9,7000);
@@ -67,20 +67,20 @@ void avancer3X3(int fd){
   ServosSetTarget(fd, 0,4000);
   ServosSetTarget(fd, 6,6000);
   ServosSetTarget(fd, 12,6000);
-  sleep(200);
+  usleep(200*1000);
 //poser les pattes
   ServosSetTarget(fd, 4,6500);
   ServosSetTarget(fd, 10,5500);
   ServosSetTarget(fd, 16,5500);
   ServosSetTarget(fd, 1,6000);
-  sleep(200);
+  usleep(200*1000);
   
 //lever les pattes
   ServosSetTarget(fd, 1,4000);
   ServosSetTarget(fd, 7,4000);
   ServosSetTarget(fd, 13,8000);
   ServosSetTarget(fd, 10,5000);
-  sleep(200);
+  usleep(200*1000);
 //touner les pattes
   ServosSetTarget(fd, 3,4000);
   ServosSetTarget(fd, 9,8000);
@@ -89,12 +89,12 @@ void avancer3X3(int fd){
   ServosSetTarget(fd, 0,5000);
   ServosSetTarget(fd, 6,8000);
   ServosSetTarget(fd, 12,4000);
-  sleep(200);
+  usleep(200*1000);
 //poser les pattes
   ServosSetTarget(fd, 1,6500);
   ServosSetTarget(fd, 7,6500);
   ServosSetTarget(fd, 13,5500);
   ServosSetTarget(fd, 10,6000);
-  sleep(200);
+  usleep(200*1000);
   
 }

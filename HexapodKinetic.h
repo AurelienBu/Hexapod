@@ -12,6 +12,7 @@
 #define SERVEURTCP_H
 
 #include "ServoControl.h"
+#include <unistd.h>
 
 void debout(int fd);
 void coucher(int fd);
