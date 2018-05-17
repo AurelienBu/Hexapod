@@ -2,7 +2,7 @@
  *@file kinetic.h                                                             *
  *                                                                            *
  *@author Aurelien Burdot                                                     *
- *                                                                            *
+ * based on Kevin Leveque code                                                                            *
  *@email aurelien.burdot@gmail.com                                            *
  *                                                                            *
  *@brief kinetic lib           												  *
