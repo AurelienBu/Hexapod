@@ -64,6 +64,7 @@ void coucher(int fd){
 }
 
 void avancer3X3(int fd){
+  debout(fd);
 //lever les pattes
   ServosSetTarget(fd, 4,4000);
   ServosSetTarget(fd, 10,8000);
@@ -108,4 +109,36 @@ void avancer3X3(int fd){
   ServosSetTarget(fd, 10,6000);
   usleep(200*1000);
   
+}
+void walkleft(int fd){ 
+  debout(fd);
+
+  //Depalcement 3X3 coté
+  
+  ServosSetTarget(fd,5,8000);
+  ServosSetTarget(fd,11,8000);
+  ServosSetTarget(fd,17,8000);
+  usleep(200*1000);
+  ServosSetTarget(fd,4,6500);
+  ServosSetTarget(fd,10,7000);
+  ServosSetTarget(fd,16,7000);
+  usleep(200*1000);
+  ServosSetTarget(fd,2,8000);
+  ServosSetTarget(fd,8,8000);
+  ServosSetTarget(fd,14,8000);
+  usleep(200*1000);
+
+  ServosSetTarget(fd,5,6000);
+  ServosSetTarget(fd,11,6000);
+  ServosSetTarget(fd,17,6000);
+  ServosSetTarget(fd,4,6000);
+  ServosSetTarget(fd,10,6000);
+  ServosSetTarget(fd,16,6000);
+
+  
+  usleep(200*1000);
+  ServosSetTarget(fd,1,5500);
+  ServosSetTarget(fd,7,5500);
+  ServosSetTarget(fd,13,7000);
+  usleep(200*1000); 
 }
