@@ -37,9 +37,9 @@ int main()
 			pthread_mutex_unlock(&mutex);
 			fprintf(stderr, "Stop..Debout\n");
 			debout(fd);
-                        pthread_mutex_lock(&mutex);
-                        strcpy(cmd, "wait");
-                        pthread_mutex_unlock(&mutex);
+  	          	pthread_mutex_lock(&mutex);
+            		strcpy(cmd, "wait");
+            		pthread_mutex_unlock(&mutex);
 		//	while(strcmp(cmd, "s++") == 0);
 		}
 		else if(strcmp(cmd, "bd+") == 0) {
@@ -51,6 +51,17 @@ int main()
 			pthread_mutex_unlock(&mutex);
 		//	while(strcmp(cmd, "bd+") == 0);
 		}
+		else if(strcmp(cmd, "r++") == 0) {
+			pthread_mutex_unlock(&mutex);
+			fprintf(stderr, "right\n");
+			walkright(fd);
+		}
+		 else if(strcmp(cmd, "l++") == 0) {
+                        pthread_mutex_unlock(&mutex);
+                        fprintf(stderr, "left\n");
+                        walkleft(fd);
+                }
+
 		else if(strcmp(cmd, "wait") == 0) {
 			pthread_mutex_unlock(&mutex);
 		}

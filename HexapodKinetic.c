@@ -110,35 +110,69 @@ void avancer3X3(int fd){
   usleep(200*1000);
   
 }
-void depLatLeft(){ 
-  debout();
+void walkright(int fd){ 
+  debout(fd);
 
   //Depalcement 3X3 coté
   
-  maestro.setTarget(5,8000);
-  maestro.setTarget(11,8000);
-  maestro.setTarget(17,8000);
-  delay(200);
-  maestro.setTarget(4,6500);
-  maestro.setTarget(10,7000);
-  maestro.setTarget(16,7000);
-  delay(200);
-  maestro.setTarget(2,8000);
-  maestro.setTarget(8,8000);
-  maestro.setTarget(14,8000);
-  delay(200);
+  ServosSetTarget(fd,5,8000);
+  ServosSetTarget(fd,11,8000);
+  ServosSetTarget(fd,17,8000);
+  usleep(200*1000);
+  ServosSetTarget(fd,4,6500);
+  ServosSetTarget(fd,10,7000);
+  ServosSetTarget(fd,16,7000);
+  usleep(200*1000);
+  ServosSetTarget(fd,2,8000);
+  ServosSetTarget(fd,8,8000);
+  ServosSetTarget(fd,14,8000);
+  usleep(200*1000);
 
-  maestro.setTarget(5,6000);
-  maestro.setTarget(11,6000);
-  maestro.setTarget(17,6000);
-  maestro.setTarget(4,6000);
-  maestro.setTarget(10,6000);
-  maestro.setTarget(16,6000);
+  ServosSetTarget(fd,5,6000);
+  ServosSetTarget(fd,11,6000);
+  ServosSetTarget(fd,17,6000);
+  ServosSetTarget(fd,4,6000);
+  ServosSetTarget(fd,10,6000);
+  ServosSetTarget(fd,16,6000);
 
   
-  delay(200);
-  maestro.setTarget(1,5500);
-  maestro.setTarget(7,5500);
-  maestro.setTarget(13,7000);
-  delay(200); 
+  usleep(200*1000);
+  ServosSetTarget(fd,1,5500);
+  ServosSetTarget(fd,7,5500);
+  ServosSetTarget(fd,13,7000);
+  usleep(200*1000); 
+}
+void walkleft(int fd) {
+
+  debout(fd);
+
+  //Depalcement 3X3 coté
+
+  ServosSetTarget(fd,14,8000);
+  ServosSetTarget(fd,2,8000);
+  ServosSetTarget(fd,8,8000);
+  usleep(200*1000);
+  ServosSetTarget(fd,13,6500);
+  ServosSetTarget(fd,1,7000);
+  ServosSetTarget(fd,7,7000);
+  usleep(200*1000);
+  ServosSetTarget(fd,11,8000);
+  ServosSetTarget(fd,17,8000);
+  ServosSetTarget(fd,5,8000);
+  usleep(200*1000);
+
+  ServosSetTarget(fd,14,6000);
+  ServosSetTarget(fd,2,6000);
+  ServosSetTarget(fd,8,6000);
+  ServosSetTarget(fd,13,6000);
+  ServosSetTarget(fd,1,6000);
+  ServosSetTarget(fd,7,6000);
+
+
+  usleep(200*1000);
+  ServosSetTarget(fd,10,5500);
+  ServosSetTarget(fd,16,5500);
+  ServosSetTarget(fd,4,7000);
+  usleep(200*1000);
+
 }

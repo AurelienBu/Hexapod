@@ -17,5 +17,6 @@
 void debout(int fd);
 void coucher(int fd);
 void avancer3X3(int fd);
-void depLatLeft();
+void walkright(int fd);
+void walkleft(int fd);
 #endif
