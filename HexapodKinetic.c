@@ -23,7 +23,7 @@ void debout(int fd){
   ServosSetTarget(fd, 3,6000);
   ServosSetTarget(fd, 6,6000);
 
-  usleep(1000 * 1000);
+  //usleep(1000 * 1000);
 }
 
 void coucher(int fd){
@@ -49,7 +49,7 @@ void coucher(int fd){
   ServosSetTarget(fd, 3,6000);
   ServosSetTarget(fd, 6,6000);
 
-  usleep(1000*1000);
+  //usleep(1000*1000);
 }
 
 void avancer3X3(int fd){

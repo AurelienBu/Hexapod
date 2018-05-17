@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #include "ServoControl.h"
 #include "ServeurTCP.h"
 #include "HexapodKinetic.h"
@@ -5,64 +6,59 @@
 #include <sys/syscall.h>
 #include <pthread.h>
 
+void* TCP_thread(void* arg);
+pthread_mutex_t mutex;
 int initial = 0;
-
-void * TCP_thread(void* arg);
+char* cmd;
 
 int main()
 {
- 	
 	int fd = SerialConfig("/dev/serial0", 9600);
 	int ret = 0;
 	pthread_t tcp_thread;
+	pthread_mutex_init(&mutex, NULL);
+	cmd = (char *) malloc(MAXSTRING * sizeof(char));
 	if((ret = pthread_create (&tcp_thread, NULL,
 				  TCP_thread, NULL)) != 0) {
 		fprintf(stderr, "Erreur de Creation du Thread : ret = %d \n",
 			ret);
 	}
-
-//	int position =0;
-//	position = ServosGetPosition(fd, 11);
-//	printf("Current position is %d.\n", position);
-
-//	ServosSetTarget(fd, 11, 8000);
-
-//	close(fd);
-	//int fd = SerialConfig("/dev/serial0", 9600);
-	//ServosSetTarget(fd, 11, 8000);
-	//int hSocket = CreateTCPSrv();
-	//int hSocketDiscute = ConnectClientTCP(hSocket);
-	
-	pthread_join(tcp_thread, NULL);
-	fprintf(stderr,"fin thread\n");
-	char* msgClient;
-	//msgClient = (char *) malloc(MAXSTRING * sizeof(char));
-
-	fprintf(stderr,"Getup");	
-	debout(fd);
-	fprintf(stderr,"Getup..done");
-	//sleep(1000);
+	pthread_mutex_lock(&mutex);
+	strcpy(cmd, "s++");
+	pthread_mutex_unlock(&mutex);
 	while(1) {
-		//ReceiveMsgTCP (hSocketDiscute, msgClient);
-		//fprintf(stderr, "Received %s\n", msgClient);
-		//if(!(strcmp("fd+", msgClient))){						
-			int j=0;
-			fprintf(stderr,"walking");
-			while(j<10){
-				avancer3X3(fd);
-				j++;
-			}/*
-	         j=0;
-	         while(j<5){
-	          avancer2X2X2();
-	          j++;
-	         }
-	        //depLatLeft();*/
-			sleep(2000);
+		pthread_mutex_lock(&mutex);
+		if(strcmp(cmd, "fd+") == 0) {
+			pthread_mutex_unlock(&mutex);
+			fprintf(stderr,"Avancer\n");
+			avancer3X3(fd);
+		}
+		else if(strcmp(cmd, "s++") == 0) {
+			pthread_mutex_unlock(&mutex);
+			fprintf(stderr, "Stop..Debout\n");
+			debout(fd);
+                        pthread_mutex_lock(&mutex);
+                        strcpy(cmd, "wait");
+                        pthread_mutex_unlock(&mutex);
+		//	while(strcmp(cmd, "s++") == 0);
+		}
+		else if(strcmp(cmd, "bd+") == 0) {
+			pthread_mutex_unlock(&mutex);
+			fprintf(stderr, "coucher\n");
 			coucher(fd);
-			sleep(5000);
-	    //}
+			pthread_mutex_lock(&mutex);
+			strcpy(cmd, "wait");
+			pthread_mutex_unlock(&mutex);
+		//	while(strcmp(cmd, "bd+") == 0);
+		}
+		else if(strcmp(cmd, "wait") == 0) {
+			pthread_mutex_unlock(&mutex);
+		}
+		else
+			pthread_mutex_unlock(&mutex);
+	usleep(100);
 	}
+	pthread_join(tcp_thread, NULL);
 	return 0;
 
 }
@@ -72,11 +68,13 @@ void* TCP_thread(void* arg) {
 	int hSocketDiscute = 0;
 	char* msgClient;
 	msgClient = (char *) malloc(MAXSTRING * sizeof(char));
-	fprintf(stderr,"Je suis dans le thread\n");
 	hSocket = CreateTCPSrv();
 	while(1) {
 		hSocketDiscute = ConnectClientTCP(hSocket);
 		ReceiveMsgTCP (hSocketDiscute, msgClient);
+		pthread_mutex_lock(&mutex);
+		strcpy(cmd, msgClient);
+		pthread_mutex_unlock(&mutex);
 	}
 	pthread_exit((void*)NULL);
 }
