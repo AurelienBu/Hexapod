@@ -13,11 +13,11 @@ default: Hexapod
 
 
 Hexapod:  main.o ServeurTCP.o ServoControl.o HexapodKinetic.o
-	$(CC) $(CFLAGS) -o Hexapod main.o ServeurTCP.o ServoControl.o HexapodKinetic.o
+	$(CC) $(CFLAGS) -o Hexapod main.o ServeurTCP.o ServoControl.o HexapodKinetic.o -D_REENTRANT -lpthread
 
 
 main.o:  main.c ServeurTCP.h ServoControl.h HexapodKinetic.h
-	$(CC) $(CFLAGS) -c main.c
+	$(CC) $(CFLAGS) -c main.c -D_REENTRANT -lpthread
 
 
 ServeurTCP.o:  ServeurTCP.c ServeurTCP.h 
