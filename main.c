@@ -24,7 +24,7 @@ int main()
 			ret);
 	}
 	pthread_mutex_lock(&mutex);
-	strcpy(cmd, "s++");
+	strcpy(cmd, "bd+");
 	pthread_mutex_unlock(&mutex);
 	while(1) {
 		pthread_mutex_lock(&mutex);

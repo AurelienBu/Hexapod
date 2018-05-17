@@ -64,6 +64,7 @@ void coucher(int fd){
 }
 
 void avancer3X3(int fd){
+  debout(fd);
 //lever les pattes
   ServosSetTarget(fd, 4,4000);
   ServosSetTarget(fd, 10,8000);
@@ -108,4 +109,36 @@ void avancer3X3(int fd){
   ServosSetTarget(fd, 10,6000);
   usleep(200*1000);
   
+}
+void depLatLeft(){ 
+  debout();
+
+  //Depalcement 3X3 coté
+  
+  maestro.setTarget(5,8000);
+  maestro.setTarget(11,8000);
+  maestro.setTarget(17,8000);
+  delay(200);
+  maestro.setTarget(4,6500);
+  maestro.setTarget(10,7000);
+  maestro.setTarget(16,7000);
+  delay(200);
+  maestro.setTarget(2,8000);
+  maestro.setTarget(8,8000);
+  maestro.setTarget(14,8000);
+  delay(200);
+
+  maestro.setTarget(5,6000);
+  maestro.setTarget(11,6000);
+  maestro.setTarget(17,6000);
+  maestro.setTarget(4,6000);
+  maestro.setTarget(10,6000);
+  maestro.setTarget(16,6000);
+
+  
+  delay(200);
+  maestro.setTarget(1,5500);
+  maestro.setTarget(7,5500);
+  maestro.setTarget(13,7000);
+  delay(200); 
 }
