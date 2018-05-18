@@ -171,8 +171,8 @@ void walkleft(int fd) {
 
   usleep(200*1000);
   ServosSetTarget(fd,10,5500);
-  ServosSetTarget(fd,16,5500);
-  ServosSetTarget(fd,4,7000);
+  ServosSetTarget(fd,,5500);
+  ServosSetTarget(fd,13,7000);
   usleep(200*1000);
 
 }

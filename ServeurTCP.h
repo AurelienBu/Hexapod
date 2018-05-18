@@ -2,7 +2,7 @@
  *@file ServeurTCP.h                                                          *
  *                                                                            *
  *@author Aurelien Burdot                                                     *
- *                                                                            *
+ *        Kevin Leveque                                                       *
  *@email aurelien.burdot@gmail.com                                            *
  *                                                                            *
  *@brief Serveur TCP Linux     												  *
