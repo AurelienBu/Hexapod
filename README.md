@@ -37,7 +37,9 @@ make
 ```
 ./Hexapod
 ```
+## Android App
 
+![GitHub Android App](https://github.com/AurelienBu/WowWeeRemote)
 
 ## Commande to send over TCP protocol
 
