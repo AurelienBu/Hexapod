@@ -8,6 +8,9 @@ This Hexapod is controlled by an Android device over a Wifi using TCP protocol.
 * **Kevin Leveque** - *Arduino Kinetic* -
 
 ## Set up
+### Wiring
+![Wiring](/Doc/Wire_setup.jpg?raw=true "Wiring")
+
 ### Pololu
 Use the TX/RX pin of the Raspberry
 Connect the USB port of the Pololu to the Raspberry (for power)
