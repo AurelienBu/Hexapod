@@ -14,9 +14,9 @@
 #include "ServoControl.h"
 #include <unistd.h>
 
-void debout(int fd);
-void coucher(int fd);
-void avancer3X3(int fd);
+void getup(int fd);
+void sitdown(int fd);
+void walk3X3(int fd);
 void walkright(int fd);
 void walkleft(int fd);
 #endif

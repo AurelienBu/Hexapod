@@ -10,6 +10,14 @@
  *****************************************************************************/
 #include "ServeurTCP.h"
 
+/******************************************************************************
+ * Function: CreateTCPSrv                                                     *
+ * Param: NONE                                                                *
+ *                                                                            *
+ * return: int : socket                                                       *
+ * Brief: Create a TCP serveur with the IP address of the computer            *
+ *                                                                            *
+ *****************************************************************************/
 int CreateTCPSrv() {
 
 	int hSocket;
@@ -40,6 +48,14 @@ int CreateTCPSrv() {
 
 }
 
+/******************************************************************************
+ * Function: ConnectClientTCP                                                 *
+ * Param: int hSocket : socket of the serveur                                 *
+ *                                                                            *
+ * return: int : socket to discute                                            *
+ * Brief: Connect the serveur to the client                                   *
+ *                                                                            *
+ *****************************************************************************/
 int ConnectClientTCP(int hSocket) {
 
 	int hSocketDiscute;
@@ -69,6 +85,14 @@ int ConnectClientTCP(int hSocket) {
     return hSocketDiscute;
 }
 
+/******************************************************************************
+ * Function: SendMsgTCP                                                       *
+ * Param: int hSocketDiscute : socket for the communication                   *
+ *        char* message : pointer to the message to send                      *
+ * return: int : 1 if success / -1 fail                                       *
+ * Brief: Send a message over TCP                                             *
+ *                                                                            *
+ *****************************************************************************/
 int SendMsgTCP (int hSocketDiscute, char* message) {
 	if(send(hSocketDiscute, message, strlen("Ack"),0) == -1){
         perror("Erreur de send");
@@ -78,6 +102,14 @@ int SendMsgTCP (int hSocketDiscute, char* message) {
     return 1;
 }
 
+/******************************************************************************
+ * Function: ReceiveMsgTCP                                                    *
+ * Param: int hSocketDiscute : socket for the communication                   *
+ *        char* msgClient : pointer to the varaible to save the message       *
+ * return: int : 1 if success / -1 fail                                       *
+ * Brief: receive a message over TCP                                          *
+ *                                                                            *
+ *****************************************************************************/
 int ReceiveMsgTCP (int hSocketDiscute, char* msgClient) {
 	//char *msgClient;
 	//msgClient = (char *) malloc(MAXSTRING * sizeof(char));
@@ -93,6 +125,14 @@ int ReceiveMsgTCP (int hSocketDiscute, char* msgClient) {
         
 }
 
+/******************************************************************************
+ * Function: CloseSrvTCP                                                      *
+ * Param: int hSocketDiscute : socket for the communication                   *
+ *        int hSocket : socket of the server                                  *
+ * return: int : 1                                                            *
+ * Brief: Close all socket                                                    *
+ *                                                                            *
+ *****************************************************************************/
 int CloseSrvTCP (int hSocket, int hSocketDiscute) {
 	close(hSocket);
 	close(hSocketDiscute);

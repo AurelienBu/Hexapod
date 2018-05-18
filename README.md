@@ -4,7 +4,7 @@ The Hexapod is a 6 legs bug made from 18 servos, a Pololu Maestro and a Raspberr
 
 This Hexapod is controlled by an Android device over a Wifi using TCP protocol.
 ## Authors
-* **Aur√lien Burdot** - *Continuous devlopment* -
+* **Aurelien Burdot** - *Continuous devlopment* -
 * **Kevin Leveque** - *Arduino Kinetic* -
 
 ## Set up

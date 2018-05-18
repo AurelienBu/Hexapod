@@ -11,7 +11,7 @@
 
 #include "HexapodKinetic.h"
 
-void debout(int fd){
+void getup(int fd){
   
   ServosSetTarget(fd, 10,5500);
   ServosSetTarget(fd, 13,5500);
@@ -37,7 +37,7 @@ void debout(int fd){
   //usleep(1000 * 1000);
 }
 
-void coucher(int fd){
+void sitdown(int fd){
   
   ServosSetTarget(fd, 10,8000);
   ServosSetTarget(fd, 13,8000);
@@ -63,15 +63,15 @@ void coucher(int fd){
   //usleep(1000*1000);
 }
 
-void avancer3X3(int fd){
-  debout(fd);
-//lever les pattes
+void walk3X3(int fd){
+  getup(fd);
+//lift up the leg
   ServosSetTarget(fd, 4,4000);
   ServosSetTarget(fd, 10,8000);
   ServosSetTarget(fd, 16,8000);
   ServosSetTarget(fd, 1,7000);
   usleep(200*1000);
-//touner les pattes
+//turn the leg
   ServosSetTarget(fd, 3,8000);
   ServosSetTarget(fd, 9,7000);
   ServosSetTarget(fd, 15,4000);
@@ -80,20 +80,20 @@ void avancer3X3(int fd){
   ServosSetTarget(fd, 6,6000);
   ServosSetTarget(fd, 12,6000);
   usleep(200*1000);
-//poser les pattes
+//put down the leg
   ServosSetTarget(fd, 4,6500);
   ServosSetTarget(fd, 10,5500);
   ServosSetTarget(fd, 16,5500);
   ServosSetTarget(fd, 1,6000);
   usleep(200*1000);
   
-//lever les pattes
+//lift up the leg
   ServosSetTarget(fd, 1,4000);
   ServosSetTarget(fd, 7,4000);
   ServosSetTarget(fd, 13,8000);
   ServosSetTarget(fd, 10,5000);
   usleep(200*1000);
-//touner les pattes
+//turn the leg
   ServosSetTarget(fd, 3,4000);
   ServosSetTarget(fd, 9,8000);
   ServosSetTarget(fd, 15,6000);
@@ -102,7 +102,7 @@ void avancer3X3(int fd){
   ServosSetTarget(fd, 6,8000);
   ServosSetTarget(fd, 12,4000);
   usleep(200*1000);
-//poser les pattes
+//put down the leg
   ServosSetTarget(fd, 1,6500);
   ServosSetTarget(fd, 7,6500);
   ServosSetTarget(fd, 13,5500);
@@ -111,9 +111,9 @@ void avancer3X3(int fd){
   
 }
 void walkright(int fd){ 
-  debout(fd);
+  getup(fd);
 
-  //Depalcement 3X3 coté
+  //moving side walk right
   
   ServosSetTarget(fd,5,8000);
   ServosSetTarget(fd,11,8000);
@@ -144,9 +144,9 @@ void walkright(int fd){
 }
 void walkleft(int fd) {
 
-  debout(fd);
+  getup(fd);
 
-  //Depalcement 3X3 coté
+  //moving side walk left
 
   ServosSetTarget(fd,14,8000);
   ServosSetTarget(fd,2,8000);
@@ -171,7 +171,7 @@ void walkleft(int fd) {
 
   usleep(200*1000);
   ServosSetTarget(fd,10,5500);
-  ServosSetTarget(fd,,5500);
+  ServosSetTarget(fd,16,5500);
   ServosSetTarget(fd,13,7000);
   usleep(200*1000);
 

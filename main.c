@@ -30,13 +30,13 @@ int main()
 		pthread_mutex_lock(&mutex);
 		if(strcmp(cmd, "fd+") == 0) {
 			pthread_mutex_unlock(&mutex);
-			fprintf(stderr,"Avancer\n");
-			avancer3X3(fd);
+			fprintf(stderr,"walk\n");
+			walk3X3(fd);
 		}
 		else if(strcmp(cmd, "s++") == 0) {
 			pthread_mutex_unlock(&mutex);
-			fprintf(stderr, "Stop..Debout\n");
-			debout(fd);
+			fprintf(stderr, "Stop..get up\n");
+			getup(fd);
   	          	pthread_mutex_lock(&mutex);
             		strcpy(cmd, "wait");
             		pthread_mutex_unlock(&mutex);
@@ -44,8 +44,8 @@ int main()
 		}
 		else if(strcmp(cmd, "bd+") == 0) {
 			pthread_mutex_unlock(&mutex);
-			fprintf(stderr, "coucher\n");
-			coucher(fd);
+			fprintf(stderr, "Sit down\n");
+			sitdown(fd);
 			pthread_mutex_lock(&mutex);
 			strcpy(cmd, "wait");
 			pthread_mutex_unlock(&mutex);
