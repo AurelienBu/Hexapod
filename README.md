@@ -1,5 +1,7 @@
 # Hexapod
 
+![Hexapod](/Doc/hexapod_meca.png?raw=true "Hexapod")
+
 The Hexapod is a 6 legs bug made from 18 servos, a Pololu Maestro and a Raspberry PI3
 
 This Hexapod is controlled by an Android device over a Wifi using TCP protocol.
@@ -37,7 +39,13 @@ make
 ```
 ./Hexapod
 ```
-## Android App
+## Add program to start-up app list
+
+Add the path of the binary in the file:
+```
+/etc/rc.local
+```
+## Remote Android App
 
 ![GitHub Android App](https://github.com/AurelienBu/WowWeeRemote)
 
@@ -63,7 +71,7 @@ bd+
 l+
 ```
 
-## Turn Right
+### Turn Right
 ```
 r+
 ```
