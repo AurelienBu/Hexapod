@@ -59,6 +59,14 @@ int ServosSetTarget(int fd, unsigned char channel, unsigned short target)
   return 0;
 }
 
+/******************************************************************************
+ * Function : SerialConfig                                                    *
+ * Param : const char* SerialPort : SerialPort for serial communication       *
+ *         int baud : baudrate for the serial communication                   *
+ * return: int : file directory of the serial com                             *
+ * Brief : This function configure the serial communication                   *
+ *                                                                            *
+ *****************************************************************************/
 int SerialConfig(const char* SerialPort, int baud)
 {
 	const char * device = SerialPort; 

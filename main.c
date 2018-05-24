@@ -79,6 +79,14 @@ int main()
 
 }
 
+/******************************************************************************
+ * Function: TCP_thread                                                       *
+ * Param: void* arg                                                           *
+ *                                                                            *
+ * return: void*                                                              *
+ * Brief: Thread for TCP communication                                        *
+ *                                                                            *
+ *****************************************************************************/
 void* TCP_thread(void* arg) {
 	int hSocket = 0;
 	int hSocketDiscute = 0;
