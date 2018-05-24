@@ -9,6 +9,9 @@ This Hexapod is controlled by an Android device over a Wifi using TCP protocol.
 * **Aurelien Burdot** - *Continuous devlopment* -
 * **Kevin Leveque** - *Arduino Kinetic* -
 
+## Video
+![Video of the Hexapod walking](https://youtu.be/1qGUNXRVS8o)
+
 ## Set up
 ### Wiring
 ![Wiring](/Doc/Wire_setup.jpg?raw=true "Wiring")
