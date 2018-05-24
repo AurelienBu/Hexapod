@@ -6,10 +6,6 @@
 #include <sys/syscall.h>
 #include <pthread.h>
 
-void* TCP_thread(void* arg);
-pthread_mutex_t mutex;
-int initial = 0;
-char* cmd;
 
 int main()
 {
@@ -79,30 +75,3 @@ int main()
 
 }
 
-/******************************************************************************
- * Function: TCP_thread                                                       *
- * Param: void* arg                                                           *
- *                                                                            *
- * return: void*                                                              *
- * Brief: Thread for TCP communication                                        *
- *                                                                            *
- *****************************************************************************/
-void* TCP_thread(void* arg) {
-	int hSocket = 0;
-	int hSocketDiscute = 0;
-	char* msgClient;
-	msgClient = (char *) malloc(MAXSTRING * sizeof(char));
-	/* Create the TCP Server */ 
-	hSocket = CreateTCPSrv();
-	while(1) {
-		/* Connect the client */
-		hSocketDiscute = ConnectClientTCP(hSocket);
-		/* Wait to received a command */
-		ReceiveMsgTCP (hSocketDiscute, msgClient);
-		pthread_mutex_lock(&mutex);
-		/* Write the commande to the global variable */
-		strcpy(cmd, msgClient);
-		pthread_mutex_unlock(&mutex);
-	}
-	pthread_exit((void*)NULL);
-}

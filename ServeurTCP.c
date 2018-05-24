@@ -139,3 +139,32 @@ int CloseSrvTCP (int hSocket, int hSocketDiscute) {
 	return 1;
 
 }
+
+/******************************************************************************
+ * Function: TCP_thread                                                       *
+ * Param: void* arg                                                           *
+ *                                                                            *
+ * return: void*                                                              *
+ * Brief: Thread for TCP communication                                        *
+ *                                                                            *
+ *****************************************************************************/
+void* TCP_thread(void* arg) {
+	int hSocket = 0;
+	int hSocketDiscute = 0;
+	char* msgClient;
+	msgClient = (char *) malloc(MAXSTRING * sizeof(char));
+	/* Create the TCP Server */ 
+	hSocket = CreateTCPSrv();
+	while(1) {
+		/* Connect the client */
+		hSocketDiscute = ConnectClientTCP(hSocket);
+		/* Wait to received a command */
+		ReceiveMsgTCP (hSocketDiscute, msgClient);
+		pthread_mutex_lock(&mutex);
+		/* Write the commande to the global variable */
+		strcpy(cmd, msgClient);
+		pthread_mutex_unlock(&mutex);
+	}
+	pthread_exit((void*)NULL);
+}
+

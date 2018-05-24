@@ -29,10 +29,14 @@
 #define PORT 65000
 #define MAXSTRING 100
 
+char* cmd;
+pthread_mutex_t mutex;
+
 int CloseSrvTCP (int hSocket, int hSocketDiscute);
 int ReceiveMsgTCP (int hSocketDiscute, char* msgClient);
 int SendMsgTCP (int hSocketDiscute, char* message);
 int ConnectClientTCP(int hSocket);
 int CreateTCPSrv();
+void* TCP_thread(void* arg);
 
 #endif
