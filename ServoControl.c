@@ -11,6 +11,7 @@
  *	 The program is made to control a Pololu Maestro 18 servos                *
  *                                                                            *
  *****************************************************************************/
+
 #include "ServoControl.h"
 
 /******************************************************************************
@@ -24,26 +25,26 @@
  *****************************************************************************/
 int ServosGetPosition(int fd, unsigned char channel, unsigned short* value)
 {
-  int ret = 0;
-  unsigned char command[] = {0x90, channel};
-  ret = write(fd, command, sizeof(command));
-  if(ret == -1)
-  {
-    perror("Error sendunf get position request");
-    return -1;
-  }
+	int ret = 0;
+	unsigned char command[] = {0x90, channel};
+	ret = write(fd, command, sizeof(command));
+	if(ret == -1)
+	{
+		perror("Error sendunf get position request");
+		return -1;
+	}
 
-  unsigned char response[2];
-  ret = read(fd,response,2);
-  if( ret != 2)
-  {
-    perror("error reading response");
-    return -1;
-  }
-  *value = response[0] + 256*response[1];
-  return ret;
+	unsigned char response[2];
+	ret = read(fd,response,2);
+	if( ret != 2)
+	{
+		perror("error reading response");
+		return -1;
+	}
+	*value = response[0] + 256*response[1];
+	return ret;
 }
- 
+
 /******************************************************************************
  * Function : ServosSetTarget                                                 *
  * Param : int fd : file directory to the serial com                          *
@@ -54,16 +55,16 @@ int ServosGetPosition(int fd, unsigned char channel, unsigned short* value)
  *****************************************************************************/
 int ServosSetTarget(int fd, unsigned char channel, unsigned short target)
 {
-  int ret = 0;
-  unsigned char command[] = {0x84, channel, target & 0x7F, target >> 7 & 0x7F};
-  ret = write(fd, command, sizeof(command));
-  if ( ret == -1)
-  {
-    perror("Error setting position target");
-    return -1;
-  }
-  else 
-    return ret;
+	int ret = 0;
+	unsigned char command[] = {0x84, channel, target & 0x7F, target >> 7 & 0x7F};
+	ret = write(fd, command, sizeof(command));
+	if ( ret == -1)
+	{
+		perror("Error setting position target");
+		return -1;
+	}
+	else 
+		return ret;
 }
 
 /******************************************************************************
@@ -76,16 +77,16 @@ int ServosSetTarget(int fd, unsigned char channel, unsigned short target)
  *****************************************************************************/
 int ServosSetSpeed(int fd, unsigned char channel, unsigned short speed_target)
 {
-  int ret = 0;
-  unsigned char command[] = {0x87, channel, speed_target & 0x7F, speed_target >> 7 & 0x7F};
-  ret = write(fd, command, sizeof(command));
-  if (ret == -1)
-  {
-    perror("Error setting speed");
-    return -1;
-  }
-  else 
-    return ret;
+	int ret = 0;
+	unsigned char command[] = {0x87, channel, speed_target & 0x7F, speed_target >> 7 & 0x7F};
+	ret = write(fd, command, sizeof(command));
+	if (ret == -1)
+	{
+		perror("Error setting speed");
+		return -1;
+	}
+	else 
+		return ret;
 
 }
 
@@ -99,16 +100,16 @@ int ServosSetSpeed(int fd, unsigned char channel, unsigned short speed_target)
  *****************************************************************************/
 int ServosSetAccel(int fd, unsigned char channel, unsigned short accel_target)
 {
-  int ret = 0;
-  unsigned char command[] = {0x89, channel, accel_target & 0x7F, accel_target >> 7 & 0x7F};
-  ret = write(fd, command, sizeof(command));
-  if (ret == -1)
-  {
-    perror("Error setting accel");
-    return -1;
-  }
-  else 
-    return ret;
+	int ret = 0;
+	unsigned char command[] = {0x89, channel, accel_target & 0x7F, accel_target >> 7 & 0x7F};
+	ret = write(fd, command, sizeof(command));
+	if (ret == -1)
+	{
+		perror("Error setting accel");
+		return -1;
+	}
+	else 
+		return ret;
 
 }
 
@@ -125,26 +126,26 @@ int SerialConfig(const char* SerialPort, int baud)
 	const char * device = SerialPort; 
 
 	int fd = open(device, O_RDWR | O_NOCTTY);
-  	if (fd == -1)
-  	{
-    		perror(device);
-    		return -1;
-  	}
+	if (fd == -1)
+	{
+		perror(device);
+		return -1;
+	}
 	struct termios options;
 	tcgetattr(fd, &options);
 	options.c_iflag &= ~(INLCR | IGNCR | ICRNL | IXON | IXOFF);
 	options.c_oflag &= ~(ONLCR | OCRNL);
 	options.c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
 	switch(baud) {
-	case 9600 : options.c_cflag = B9600 | CS8 | CLOCAL | CREAD;
-		    break;
-	case 115200 : options.c_cflag = B115200 | CS8 | CLOCAL | CREAD;
-	              break;
-	default : options.c_cflag = B9600 | CS8 | CLOCAL | CREAD;
-		  break;
+		case 9600 : options.c_cflag = B9600 | CS8 | CLOCAL | CREAD;
+			    break;
+		case 115200 : options.c_cflag = B115200 | CS8 | CLOCAL | CREAD;
+			      break;
+		default : options.c_cflag = B9600 | CS8 | CLOCAL | CREAD;
+			  break;
 	}
 	tcsetattr(fd, TCSANOW, &options);
-	
+
 	return fd;
 }
 
