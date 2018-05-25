@@ -17,27 +17,31 @@
  * Function: ServosGetPosition                                                *
  * Param: int fd : file directory to the serial com                           *
  *         unsigned char channel : channel of the servos                      *
- * return: int : position of th servos                                        *
+ *         unsigned short value : position of the servos                      * 
+ * return: int : number of byte red                                           *
  * Brief: This function reads the position of the servos given by the channel *
  *                                                                            *
  *****************************************************************************/
-int ServosGetPosition(int fd, unsigned char channel)
+int ServosGetPosition(int fd, unsigned char channel, unsigned short* value)
 {
+  int ret = 0;
   unsigned char command[] = {0x90, channel};
-  if(write(fd, command, sizeof(command)) == -1)
+  ret = write(fd, command, sizeof(command));
+  if(ret == -1)
   {
-    perror("error writing");
+    perror("Error sendunf get position request");
     return -1;
   }
- 
+
   unsigned char response[2];
-  if(read(fd,response,2) != 2)
+  ret = read(fd,response,2);
+  if( ret != 2)
   {
-    perror("error reading");
+    perror("error reading response");
     return -1;
   }
- 
-  return response[0] + 256*response[1];
+  *value = response[0] + 256*response[1];
+  return ret;
 }
  
 /******************************************************************************
@@ -50,13 +54,62 @@ int ServosGetPosition(int fd, unsigned char channel)
  *****************************************************************************/
 int ServosSetTarget(int fd, unsigned char channel, unsigned short target)
 {
+  int ret = 0;
   unsigned char command[] = {0x84, channel, target & 0x7F, target >> 7 & 0x7F};
-  if (write(fd, command, sizeof(command)) == -1)
+  ret = write(fd, command, sizeof(command));
+  if ( ret == -1)
   {
-    perror("error writing");
+    perror("Error setting position target");
     return -1;
   }
-  return 0;
+  else 
+    return ret;
+}
+
+/******************************************************************************
+ * Function : ServosSetSpeed                                                  *
+ * Param : int fd : file directory to the serial com                          *
+ *         unsigned char channel : channel of the servos                      *
+ *         unsigned short speed_target : speed needed                         *
+ * Brief : This function set the speed of the servos given by the channel     *
+ *                                                                            *
+ *****************************************************************************/
+int ServosSetSpeed(int fd, unsigned char channel, unsigned short speed_target)
+{
+  int ret = 0;
+  unsigned char command[] = {0x87, channel, speed_target & 0x7F, speed_target >> 7 & 0x7F};
+  ret = write(fd, command, sizeof(command));
+  if (ret == -1)
+  {
+    perror("Error setting speed");
+    return -1;
+  }
+  else 
+    return ret;
+
+}
+
+/******************************************************************************
+ * Function : ServosSetAccel                                                  *
+ * Param : int fd : file directory to the serial com                          *
+ *         unsigned char channel : channel of the servos                      *
+ *         unsigned short accel_target : accel needed                         *
+ * Brief : This function set the accel of the servos given by the channel     *
+ *                                                                            *
+ *****************************************************************************/
+int ServosSetAccel(int fd, unsigned char channel, unsigned short accel_target)
+{
+  int ret = 0;
+  unsigned char command[] = {0x89, channel, accel_target & 0x7F, accel_target >> 7 & 0x7F};
+  ret = write(fd, command, sizeof(command));
+  if (ret == -1)
+  {
+    perror("Error setting accel");
+    return -1;
+  }
+  else 
+    return ret;
+
 }
 
 /******************************************************************************

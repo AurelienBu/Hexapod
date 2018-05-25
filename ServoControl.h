@@ -20,8 +20,10 @@
 #include <termios.h>
 
 
-int ServosGetPosition(int fd, unsigned char channel);
+int ServosGetPosition(int fd, unsigned char channel, unsigned short* value);
 int ServosSetTarget(int fd, unsigned char channel, unsigned short target);
 int SerialConfig(const char* SerialPort, int baud);
+int ServosSetTarget(int fd, unsigned char channel, unsigned short target);
+int ServosSetSpeed(int fd, unsigned char channel, unsigned short speed_target);
 
 #endif
