@@ -82,7 +82,7 @@ int ConnectClientTCP(int hSocket) {
 			
 	}
 	printf("Discute : %d \n",hSocketDiscute);
-    return hSocketDiscute;
+	return hSocketDiscute;
 }
 
 /******************************************************************************
@@ -95,11 +95,11 @@ int ConnectClientTCP(int hSocket) {
  *****************************************************************************/
 int SendMsgTCP (int hSocketDiscute, char* message) {
 	if(send(hSocketDiscute, message, strlen("Ack"),0) == -1){
-        perror("Erreur de send");
-        //exit(-1);
-        return -1;
-    }
-    return 1;
+		perror("Erreur de send");
+		//exit(-1);
+		return -1;
+	}
+	return 1;
 }
 
 /******************************************************************************
@@ -114,15 +114,14 @@ int ReceiveMsgTCP (int hSocketDiscute, char* msgClient) {
 	//char *msgClient;
 	//msgClient = (char *) malloc(MAXSTRING * sizeof(char));
 	if(recv(hSocketDiscute, msgClient, 256, 0) == -1){
-        perror("Erreur recv");
-        return -1;
-    }
-    /* blocage par adresse ip */
-    else {
-        fprintf(stderr,"Received : %s\n",msgClient);
-        return 1;
-    }
-        
+		perror("Erreur recv");
+		return -1;
+	}
+	/* blocage par adresse ip */
+	else {
+		fprintf(stderr,"Received : %s\n",msgClient);
+		eturn 1;
+	}
 }
 
 /******************************************************************************
